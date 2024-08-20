@@ -1,7 +1,9 @@
 # AWS-EKS-project
 ## AWS EKS Project Overview
 
-This project demonstrates the setup and deployment of applications on Amazon Elastic Kubernetes Service (EKS) with a focus on configuring networking, security, and service exposure. Note: This project was carried out using the AWS root account for setup and management.
+This project demonstrates the setup and deployment of applications on Amazon Elastic Kubernetes Service (EKS) with a focus on configuring networking, security, and service exposure. 
+
+Note: This project was carried out using the AWS root account for setup and management.
 Prerequisites
 
    1 An AWS account (root account used for this project).
@@ -14,16 +16,20 @@ Prerequisites
 ## 1. Creating an AWS Account and Setting up IAM Users
 
    1 Create an AWS Account:
+   
       -  Visit AWS and click on "Create an AWS Account."
       -  Follow the instructions to enter your email, password, and payment information.
 
    2 Access AWS Management Console:
+   
       -  Verify your email and log in to the AWS Management Console.
 
    3 Set up Multi-Factor Authentication (MFA):
+   
      -   Enhance account security by setting up MFA.
 
    4 Create IAM Users:
+   
       -  Navigate to IAM in the AWS Management Console.
      -   Add users with necessary permissions and store access keys securely.
 
@@ -32,38 +38,150 @@ Prerequisites
 ## 2. Configuring the AWS CLI and kubectl
 
    1 Install AWS CLI:
+   
       -  Download and install the AWS CLI. Follow instructions specific to your operating system.
 
    2 Configure AWS CLI Credentials:
+   
       -  Run aws configure in your terminal and enter your IAM user's access key ID, secret access key, region, and output format.
 
     3 Install kubectl:
+    
        - Download and install kubectl. Instructions can be found in the official Kubernetes documentation.
 
    4 Configure kubectl for EKS:
    
      -   Update your kubeconfig file using:
+     
   - aws eks update-kubeconfig --name your-cluster-name
+  - 
       -  Verify by running kubectl get nodes.
 
 ## 3. Preparing Networking and Security Groups for EKS
 
  1   Create an Amazon VPC:
+ 
        - Set up a VPC with public and private subnets.
 
   2  Configure Security Groups:
+  
         - Create and configure security groups for your EKS worker nodes, defining inbound and outbound rules.
 
   3  Set Up Internet Gateway (IGW):
+  
         - Create and attach an IGW to your VPC.
         - Update route tables to allow internet access.
 
    4 Configure IAM Policies:
        - Create IAM policies and attach them to roles used by EKS worker nodes.
 
+       Note: I used default VPC
 
 
-  ## Service Exposure and Troubleshooting
+
+# Project Process
+
+After preparing the networking and security groups for the EKS cluster, the next steps involved setting up the EKS cluster itself and deploying the application. Here’s a detailed overview of the process:
+
+  ##  Creating the EKS Cluster:
+    
+        I created an Amazon EKS cluster and used the default Fargate profile, which is named fargate by default. This Fargate profile enables the cluster to run pods on AWS Fargate, a serverless compute engine that automatically manages the underlying infrastructure for you.
+
+   ## Setting Up the game-2048 Namespace:
+   
+        Within the EKS cluster, I created a namespace called game-2048. This namespace is used to isolate and manage resources related to the application deployment. Here’s the YAML configuration used to create the namespace:
+
+
+        apiVersion: v1
+kind: Namespace
+metadata:
+  name: game-2048
+  
+## Deploying the Application:
+
+    In the game-2048 namespace, I deployed the application using a Kubernetes Deployment resource. The deployment specifies the container image to use and the number of replicas. Here’s the YAML configuration for the Deployment:
+
+
+
+    apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: game-2048
+  name: deployment-2048
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: app-2048
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: app-2048
+    spec:
+      containers:
+      - image: public.ecr.aws/l6m2t8p7/docker-2048:latest
+        imagePullPolicy: Always
+        name: app-2048
+        ports:
+        - containerPort: 80
+
+## Creating a Service:
+
+    A Kubernetes Service of type NodePort was created to expose the application internally within the cluster. This service routes traffic to the pods managed by the deployment. The YAML configuration for the Service is as follows:
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: game-2048
+  name: service-2048
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: app-2048
+
+
+## Configuring Ingress:
+
+    To manage external access to the application, I configured an Ingress resource within the game-2048 namespace. This Ingress uses the AWS Application Load Balancer (ALB) and routes HTTP traffic to the service. The YAML configuration for the Ingress is:
+
+    apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: game-2048
+  name: ingress-2048
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: service-2048
+              port:
+                number: 80
+
+
+## Installing OIDC for LoadBalancer Integration:
+
+    I installed and configured OpenID Connect (OIDC) to enable authentication and authorization for the LoadBalancer. OIDC integration allows the LoadBalancer to authenticate and authorize requests securely.
+
+
+##  Deploying the LoadBalancer:
+
+    Finally, I created a LoadBalancer service in the default namespace to manage external access to the application. The LoadBalancer was configured to work with the OIDC setup, providing a secure and scalable way to expose the application
+    
+    .
+
+  # Service Exposure and Troubleshooting
 
 During the development of this project, I initially exposed services using an AWS LoadBalancer type service. When deploying this service, an external IP address was allocated successfully, but accessing this IP address directly did not yield the expected application output. Instead, the application only responded correctly when the external IP was forwarded to a local host.
 
