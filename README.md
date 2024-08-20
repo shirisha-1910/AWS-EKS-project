@@ -17,8 +17,8 @@ Prerequisites
 
    1 Create an AWS Account:
    
-     * Visit AWS and click on "Create an AWS Account."
-     * Follow the instructions to enter your email, password, and payment information.
+     + Visit AWS and click on "Create an AWS Account."
+     + Follow the instructions to enter your email, password, and payment information.
 
    2 Access AWS Management Console:
    
