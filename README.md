@@ -1,7 +1,7 @@
 # AWS-EKS-project
 ## AWS EKS Project Overview
 
-* This project demonstrates the setup and deployment of applications on Amazon Elastic Kubernetes Service (EKS) with a focus on configuring networking, security, and service exposure. 
+This project demonstrates the setup and deployment of applications on Amazon Elastic Kubernetes Service (EKS) with a focus on configuring networking, security, and service exposure. 
 
 Note: This project was carried out using the AWS root account for setup and management.
 Prerequisites
