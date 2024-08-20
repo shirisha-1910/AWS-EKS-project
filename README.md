@@ -5,59 +5,61 @@ This project demonstrates the setup and deployment of applications on Amazon Ela
 Prerequisites
 
    1 An AWS account (root account used for this project).
+   
    2 AWS CLI and kubectl installed and configured.
+   
    3 Basic understanding of Kubernetes and AWS services.
 
 # Project Steps
 ## 1. Creating an AWS Account and Setting up IAM Users
 
    1 Create an AWS Account:
-        Visit AWS and click on "Create an AWS Account."
-        Follow the instructions to enter your email, password, and payment information.
+      -  Visit AWS and click on "Create an AWS Account."
+      -  Follow the instructions to enter your email, password, and payment information.
 
    2 Access AWS Management Console:
-        Verify your email and log in to the AWS Management Console.
+      -  Verify your email and log in to the AWS Management Console.
 
    3 Set up Multi-Factor Authentication (MFA):
-        Enhance account security by setting up MFA.
+     -   Enhance account security by setting up MFA.
 
    4 Create IAM Users:
-        Navigate to IAM in the AWS Management Console.
-        Add users with necessary permissions and store access keys securely.
+      -  Navigate to IAM in the AWS Management Console.
+     -   Add users with necessary permissions and store access keys securely.
 
     Note: This project was completed using the root account. For better security, create and use IAM users and roles with least privilege for managing AWS resources.
 
 ## 2. Configuring the AWS CLI and kubectl
 
    1 Install AWS CLI:
-        Download and install the AWS CLI. Follow instructions specific to your operating system.
+      -  Download and install the AWS CLI. Follow instructions specific to your operating system.
 
    2 Configure AWS CLI Credentials:
-        Run aws configure in your terminal and enter your IAM user's access key ID, secret access key, region, and output format.
+      -  Run aws configure in your terminal and enter your IAM user's access key ID, secret access key, region, and output format.
 
     3 Install kubectl:
-        Download and install kubectl. Instructions can be found in the official Kubernetes documentation.
+       - Download and install kubectl. Instructions can be found in the official Kubernetes documentation.
 
    4 Configure kubectl for EKS:
    
      -   Update your kubeconfig file using:
-   aws eks update-kubeconfig --name your-cluster-name
+  - aws eks update-kubeconfig --name your-cluster-name
       -  Verify by running kubectl get nodes.
 
 ## 3. Preparing Networking and Security Groups for EKS
 
  1   Create an Amazon VPC:
-        Set up a VPC with public and private subnets.
+       - Set up a VPC with public and private subnets.
 
   2  Configure Security Groups:
-        Create and configure security groups for your EKS worker nodes, defining inbound and outbound rules.
+        - Create and configure security groups for your EKS worker nodes, defining inbound and outbound rules.
 
   3  Set Up Internet Gateway (IGW):
-        Create and attach an IGW to your VPC.
-        Update route tables to allow internet access.
+        - Create and attach an IGW to your VPC.
+        - Update route tables to allow internet access.
 
    4 Configure IAM Policies:
-        Create IAM policies and attach them to roles used by EKS worker nodes.
+       - Create IAM policies and attach them to roles used by EKS worker nodes.
 
 
 
