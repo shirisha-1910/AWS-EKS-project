@@ -124,7 +124,8 @@ After preparing the networking and security groups for the EKS cluster, the next
    
    
    
-   ![output](/LB.png)
+   ![output](LB.png)
+
 
 
 
