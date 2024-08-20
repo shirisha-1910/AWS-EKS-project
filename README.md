@@ -55,7 +55,7 @@ Prerequisites
    
 - Update your kubeconfig file using:
      
-- aws eks update-kubeconfig --name your-cluster-name
+      - aws eks update-kubeconfig --name your-cluster-name
    
  Verify by running kubectl get nodes.
 
@@ -77,7 +77,7 @@ Prerequisites
 4 .Configure IAM Policies:
 - Create IAM policies and attach them to roles used by EKS worker nodes.
 
-       Note: I used default VPC
+Note: I used default VPC
 
 
 
