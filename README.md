@@ -89,9 +89,9 @@ After preparing the networking and security groups for the EKS cluster, the next
     
  1 . I created an Amazon EKS cluster and used the default Fargate profile, which is named fargate by default. This Fargate profile enables the cluster to run pods on AWS Fargate, a serverless compute engine that automatically manages the                   underlying infrastructure for you.
 
-   ## 2 Setting Up the game-2048 Namespace:
+## 2 Setting Up the game-2048 Namespace:
    
-    1 . Within the EKS cluster, I created a namespace called game-2048. This namespace is used to isolate and manage resources related to the application deployment. Here’s the YAML configuration used to create the namespace:
+1 . Within the EKS cluster, I created a namespace called game-2048. This namespace is used to isolate and manage resources related to the application deployment. Here’s the YAML configuration used to create the namespace:
 
   
 ## 3 Deploying the Application:
@@ -101,7 +101,7 @@ After preparing the networking and security groups for the EKS cluster, the next
 
 ##  4 Creating a Service:
 
-  1. A Kubernetes Service of type NodePort was created to expose the application internally within the cluster. This service routes traffic to the pods managed by the deployment. The YAML configuration for the Service is as follows:
+1. A Kubernetes Service of type NodePort was created to expose the application internally within the cluster. This service routes traffic to the pods managed by the deployment. The YAML configuration for the Service is as follows:
 
 
 
