@@ -142,7 +142,7 @@ spec:
       protocol: TCP
   type: NodePort
   selector:
-    app.kubernetes.io/name: app-2048
+    app.kubernetes.io/name: app-2048 ```yaml
 
 
 ## 5 Configuring Ingress:
