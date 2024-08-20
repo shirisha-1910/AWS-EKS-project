@@ -129,6 +129,7 @@ spec:
 
   1  A Kubernetes Service of type NodePort was created to expose the application internally within the cluster. This service routes traffic to the pods managed by the deployment. The YAML configuration for the Service is as follows:
 
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
