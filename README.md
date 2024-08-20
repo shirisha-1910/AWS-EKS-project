@@ -124,7 +124,8 @@ After preparing the networking and security groups for the EKS cluster, the next
    
    
    
-   ![output](LB.png)
+   ![output](https://raw.githubusercontent.com/shirisha-1910/AWS-EKS-project/main/images/LB.png)
+
 
 
 
