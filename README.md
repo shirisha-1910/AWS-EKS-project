@@ -110,7 +110,8 @@ After preparing the networking and security groups for the EKS cluster, the next
 
  1 . To manage external access to the application, I configured an Ingress resource within the game-2048 namespace. This Ingress uses the AWS Application Load Balancer (ALB) and routes HTTP traffic to the service. The YAML configuration                 for the Ingress is:
 
-[eks.yaml](AWS-EKS-project/eks.yaml)
+[eks.yaml](./eks.yaml)
+
 
 ## 6 Installing OIDC for LoadBalancer Integration:
 
