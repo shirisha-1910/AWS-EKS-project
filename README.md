@@ -120,7 +120,9 @@ After preparing the networking and security groups for the EKS cluster, the next
 
 ## 7 Deploying the LoadBalancer:
 
-   1 .Finally, I created a LoadBalancer service in the default namespace to manage external access to the application. The LoadBalancer was configured to work with the OIDC setup, providing a secure and scalable way to expose the application
+   1 .Finally, I created a LoadBalancer service in the default namespace to manage external access to the application. The LoadBalancer was configured to work with the OIDC setup, providing a secure and scalable way to expose the application.
+   
+  [Screenshot from 2024-08-15 19-32-48.png ](./Screenshot from 2024-08-15 19-32-48.png)
     
     .
 
