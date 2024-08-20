@@ -18,20 +18,20 @@ Prerequisites
    1 Create an AWS Account:
    
     * Visit AWS and click on "Create an AWS Account."
-   * Follow the instructions to enter your email, password, and payment information.
+     * Follow the instructions to enter your email, password, and payment information.
 
    2 Access AWS Management Console:
    
-      1 Verify your email and log in to the AWS Management Console.
+      * Verify your email and log in to the AWS Management Console.
 
    3 Set up Multi-Factor Authentication (MFA):
    
-     1  Enhance account security by setting up MFA.
+     * Enhance account security by setting up MFA.
 
    4 Create IAM Users:
    
-      1 Navigate to IAM in the AWS Management Console.
-     2 Add users with necessary permissions and store access keys securely.
+      * Navigate to IAM in the AWS Management Console.
+     * Add users with necessary permissions and store access keys securely.
 
     Note: This project was completed using the root account. For better security, create and use IAM users and roles with least privilege for managing AWS resources.
 
@@ -39,41 +39,41 @@ Prerequisites
 
    1 .Install AWS CLI:
    
-      1 Download and install the AWS CLI. Follow instructions specific to your operating system.
+      * Download and install the AWS CLI. Follow instructions specific to your operating system.
 
    2 .Configure AWS CLI Credentials:
    
-      1 .Run aws configure in your terminal and enter your IAM user's access key ID, secret access key, region, and output format.
+      * Run aws configure in your terminal and enter your IAM user's access key ID, secret access key, region, and output format.
 
     3 .Install kubectl:
     
-       1 .Download and install kubectl. Instructions can be found in the official Kubernetes documentation.
+       * Download and install kubectl. Instructions can be found in the official Kubernetes documentation.
 
    4 .Configure kubectl for EKS:
    
-     1 .Update your kubeconfig file using:
+     * Update your kubeconfig file using:
      
   - aws eks update-kubeconfig --name your-cluster-name
    
-     2. Verify by running kubectl get nodes.
+     * Verify by running kubectl get nodes.
 
 ## 3. Preparing Networking and Security Groups for EKS
 
  1  . Create an Amazon VPC:
  
-       1 .Set up a VPC with public and private subnets.
+       * Set up a VPC with public and private subnets.
 
   2 . Configure Security Groups:
   
-        1  .Create and configure security groups for your EKS worker nodes, defining inbound and outbound rules.
+        * Create and configure security groups for your EKS worker nodes, defining inbound and outbound rules.
 
   3 . Set Up Internet Gateway (IGW):
   
-        1 .Create and attach an IGW to your VPC.
-        2 .Update route tables to allow internet access.
+        * Create and attach an IGW to your VPC.
+        * Update route tables to allow internet access.
 
    4 .Configure IAM Policies:
-       1 .Create IAM policies and attach them to roles used by EKS worker nodes.
+       * Create IAM policies and attach them to roles used by EKS worker nodes.
 
        Note: I used default VPC
 
