@@ -120,7 +120,11 @@ After preparing the networking and security groups for the EKS cluster, the next
 
    1 . I installed and configured OpenID Connect (OIDC) to enable authentication and authorization for the LoadBalancer. OIDC integration allows the LoadBalancer to authenticate and authorize requests securely.
 
-   ![output](LBAWS/output.png)    ![output](./LB.png)
+   ![output](LBAWS/output.png)    
+   
+   
+   
+   ![output](./LB.png)
 
 
 
