@@ -87,7 +87,10 @@ After preparing the networking and security groups for the EKS cluster, the next
 
   ## 1 Creating the EKS Cluster:
     
- 1 . I created an Amazon EKS cluster and used the default Fargate profile, which is named fargate by default. This Fargate profile enables the cluster to run pods on AWS Fargate, a serverless compute engine that automatically manages the                   underlying infrastructure for you.
+ 1 . I created an Amazon EKS cluster and used the default Fargate profile, which is named fargate by default. This Fargate profile enables the cluster to run pods on AWS Fargate, a serverless compute engine that automatically manages the underlying infrastructure for you.
+
+ ![output](images/cluster.png)
+
 
 ## 2 Setting Up the game-2048 Namespace:
    
@@ -96,13 +99,13 @@ After preparing the networking and security groups for the EKS cluster, the next
   
 ## 3 Deploying the Application:
 
-   1 .In the game-2048 namespace, I deployed the application using a Kubernetes Deployment resource. The deployment specifies the container image to use and the number of replicas. Here’s the YAML configuration for the Deployment:
-
+   1 .In the game-2048 namespace, I deployed the application using a Kubernetes Deployment resource. The deployment specifies the container image to use and the number of replicas. 
 
 ##  4 Creating a Service:
 
 1. A Kubernetes Service of type NodePort was created to expose the application internally within the cluster. This service routes traffic to the pods managed by the deployment. The YAML configuration for the Service is as follows:
 
+![output](images/helmIAM.png)
 
 
 
@@ -116,6 +119,10 @@ After preparing the networking and security groups for the EKS cluster, the next
 ## 6 Installing OIDC for LoadBalancer Integration:
 
    1 . I installed and configured OpenID Connect (OIDC) to enable authentication and authorization for the LoadBalancer. OIDC integration allows the LoadBalancer to authenticate and authorize requests securely.
+
+   ![output](LBAWS/output.png)    ![output](./LB.png)
+
+
 
 
 ## 7 Deploying the LoadBalancer:
