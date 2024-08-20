@@ -83,13 +83,13 @@ Prerequisites
 
 After preparing the networking and security groups for the EKS cluster, the next steps involved setting up the EKS cluster itself and deploying the application. Here’s a detailed overview of the process:
 
-  ##  Creating the EKS Cluster:
+  ## 1 Creating the EKS Cluster:
     
-        I created an Amazon EKS cluster and used the default Fargate profile, which is named fargate by default. This Fargate profile enables the cluster to run pods on AWS Fargate, a serverless compute engine that automatically manages the underlying infrastructure for you.
+     1   I created an Amazon EKS cluster and used the default Fargate profile, which is named fargate by default. This Fargate profile enables the cluster to run pods on AWS Fargate, a serverless compute engine that automatically manages the underlying infrastructure for you.
 
-   ## Setting Up the game-2048 Namespace:
+   ## 2 Setting Up the game-2048 Namespace:
    
-        Within the EKS cluster, I created a namespace called game-2048. This namespace is used to isolate and manage resources related to the application deployment. Here’s the YAML configuration used to create the namespace:
+     1   Within the EKS cluster, I created a namespace called game-2048. This namespace is used to isolate and manage resources related to the application deployment. Here’s the YAML configuration used to create the namespace:
 
 
         apiVersion: v1
@@ -97,9 +97,9 @@ kind: Namespace
 metadata:
   name: game-2048
   
-## Deploying the Application:
+## 3 Deploying the Application:
 
-    In the game-2048 namespace, I deployed the application using a Kubernetes Deployment resource. The deployment specifies the container image to use and the number of replicas. Here’s the YAML configuration for the Deployment:
+   1  In the game-2048 namespace, I deployed the application using a Kubernetes Deployment resource. The deployment specifies the container image to use and the number of replicas. Here’s the YAML configuration for the Deployment:
 
 
 
@@ -125,9 +125,9 @@ spec:
         ports:
         - containerPort: 80
 
-## Creating a Service:
+##  4 Creating a Service:
 
-    A Kubernetes Service of type NodePort was created to expose the application internally within the cluster. This service routes traffic to the pods managed by the deployment. The YAML configuration for the Service is as follows:
+  1  A Kubernetes Service of type NodePort was created to expose the application internally within the cluster. This service routes traffic to the pods managed by the deployment. The YAML configuration for the Service is as follows:
 
 apiVersion: v1
 kind: Service
@@ -144,9 +144,9 @@ spec:
     app.kubernetes.io/name: app-2048
 
 
-## Configuring Ingress:
+## 5 Configuring Ingress:
 
-    To manage external access to the application, I configured an Ingress resource within the game-2048 namespace. This Ingress uses the AWS Application Load Balancer (ALB) and routes HTTP traffic to the service. The YAML configuration for the Ingress is:
+    1 To manage external access to the application, I configured an Ingress resource within the game-2048 namespace. This Ingress uses the AWS Application Load Balancer (ALB) and routes HTTP traffic to the service. The YAML configuration for the Ingress is:
 
     apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -170,14 +170,14 @@ spec:
                 number: 80
 
 
-## Installing OIDC for LoadBalancer Integration:
+## 6 Installing OIDC for LoadBalancer Integration:
 
-    I installed and configured OpenID Connect (OIDC) to enable authentication and authorization for the LoadBalancer. OIDC integration allows the LoadBalancer to authenticate and authorize requests securely.
+   1  I installed and configured OpenID Connect (OIDC) to enable authentication and authorization for the LoadBalancer. OIDC integration allows the LoadBalancer to authenticate and authorize requests securely.
 
 
-##  Deploying the LoadBalancer:
+## 7 Deploying the LoadBalancer:
 
-    Finally, I created a LoadBalancer service in the default namespace to manage external access to the application. The LoadBalancer was configured to work with the OIDC setup, providing a secure and scalable way to expose the application
+   1 Finally, I created a LoadBalancer service in the default namespace to manage external access to the application. The LoadBalancer was configured to work with the OIDC setup, providing a secure and scalable way to expose the application
     
     .
 
