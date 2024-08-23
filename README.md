@@ -153,6 +153,49 @@ In summary, while the LoadBalancer service provided an external IP, it was not s
 
 
 
-## Project-2
+# Project-2
 [deployment2.yaml](./deployment2.yaml)
+
+## 1.Create a Cluster Configuration File:
+Create a file named cluster-config.yaml
+Create the EKS Cluster:
+      eksctl create cluster -f cluster-config.yaml
+This command will set up the EKS cluster with the specified node group and instance type
+![output](IMAGES2/cluster.png)
+
+## 2.Set Up Kubernetes Namespace
+Create a file named namespace.yaml with the following content:
+Apply the Namespace:
+Apply the namespace to cluster:
+      kubectl apply -f namespace.yaml
+      ![output](IMAGES2/ec2.png)
+## 3.Deploy the Application
+Create a Deployment:
+Create a file named deployment.yaml 
+Apply the Deployment:
+Deploy the application:
+ kubectl apply -f deployment.yaml
+ ## 4.Expose the Application
+ Create a Service:
+ Create a file named service.yaml
+ Apply the Service:
+Expose the application:
+      kubectl apply -f service.yaml
+      ![output](IMAGES2/loadblncer.png)
+## 5.Create an Ingress:
+Create a file named ingress.yaml
+Apply the Ingress:
+Configure the Ingress:
+   kubectl apply -f ingress.yaml
+   ![output](IMAGES2/term.png)
+## 6.Access the Application
+Retrieve the External IP:
+Get the external IP or DNS name of service by running:
+  kubectl get ingress -n temp-ns
+Access Application:
+Use the external IP or DNS name to access your application in a web browser.
+![output](IMAGES2/Tem.png)
+
+      
+
 
