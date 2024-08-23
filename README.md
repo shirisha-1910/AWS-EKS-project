@@ -150,3 +150,9 @@ This issue occurred because the LoadBalancer service, while providing an externa
 To address this problem, I switched to using an Ingress resource. The Ingress controller manages external access to the services within the Kubernetes cluster, providing more advanced routing capabilities. By configuring an Ingress, I was able to define rules for routing HTTP(S) traffic to the appropriate services based on domain names or paths. This setup resolved the issue, allowing the application to be accessed reliably through the Ingress without needing to manually forward the IP address to a local host.
 
 In summary, while the LoadBalancer service provided an external IP, it was not sufficient for proper traffic management and routing. The Ingress resource offered a more robust solution for managing external access and routing, ensuring that the application was accessible and functioning as intended.
+
+
+
+## Project-2
+[deployment2.yaml](./deployment2.yaml)
+
